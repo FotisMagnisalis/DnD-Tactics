@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4246621142896584055}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2537063811310132154}
@@ -108,6 +108,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2537063811310132154}
   - component: {fileID: -7976153750071285545}
+  - component: {fileID: 8258088548190974175}
   m_Layer: 0
   m_Name: BaseTile
   m_TagString: Tile
@@ -123,7 +124,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7253929026829068268}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4246621142896584051}
@@ -142,6 +143,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0abce2f917de663418acca71b5f01427, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TileLocation: {x: 0, y: 0}
+  tileType: 0
+  hovered: 0
+  baseMaterial: {fileID: 2100000, guid: dc599a325dd6b454cb6966bc8dd6ad4d, type: 2}
+  mouseOverMaterial: {fileID: 2100000, guid: 6fc7525cd0a8f0647ac27020dec97fe1, type: 2}
+--- !u!65 &8258088548190974175
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7253929026829068268}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.16, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &4907140510327826609
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -157,7 +176,7 @@ PrefabInstance:
     - target: {fileID: 9148690069807648194, guid: 8ab2160f6bffdb64782baf24cdcbfc30,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 9148690069807648194, guid: 8ab2160f6bffdb64782baf24cdcbfc30,
         type: 3}

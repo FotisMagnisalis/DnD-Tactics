@@ -10,13 +10,12 @@ public class TileAssigner : MonoBehaviour
     {
         GameObject[] tiles = GameObject.FindGameObjectsWithTag("Tile");
 
+        UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(tiles[0].scene);
 
         //Assign the position
-        foreach(GameObject t in tiles)
+        foreach (GameObject t in tiles)
         {
-
-            t.GetComponent<Tile>().TileLocation.x = (int) t.transform.position.x;
-            t.GetComponent<Tile>().TileLocation.y = (int) t.transform.position.z; //We don't care about the y in this context
+            t.GetComponent<Tile>().InitLocation();
         }
     }
 }
