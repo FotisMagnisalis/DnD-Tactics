@@ -92,7 +92,7 @@ public class Tile : MonoBehaviour
         }
         else
         {
-            return (int) tileType;
+            return 0;
         }
     }
 

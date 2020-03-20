@@ -9,6 +9,7 @@ public class Pathfinder : MonoBehaviour
     public Dictionary<Vector2Int, Tile> grid;
     List<Tile> walkableTiles = new List<Tile>();
     Character character;
+    int characterSpeed;
 
     void Start()
     {
@@ -22,6 +23,9 @@ public class Pathfinder : MonoBehaviour
 
     public void findWalkableTiles(Tile startingTile)
     {
+
+        characterSpeed = character.characterClass.speed;
+
         resetTiles();
 
         //Use of bfs algorithm
@@ -34,21 +38,25 @@ public class Pathfinder : MonoBehaviour
         {
             Tile temp = bfsQueue.Dequeue();
             print("Cost:" +temp.tileType + "Tile Type:" + temp.TileLocation);
-            if (temp.calcCost() > character.characterClass.speed)
+            if (temp.calcCost() > characterSpeed)
             {
                 continue;
             }
-            else
-            {
-                walkableTiles.Add(temp);
-            }
-            foreach(Tile neighbor in temp.neighbors)
+
+            walkableTiles.Add(temp);
+
+            foreach (Tile neighbor in temp.neighbors)
             {
                 if (!neighbor.searched)
                 {
-                    neighbor.searched = true;
                     neighbor.parent = temp;
-                    bfsQueue.Enqueue(neighbor);
+
+                    if(neighbor.calcCost() <= characterSpeed)
+                    {
+                        neighbor.searched = true;
+
+                        bfsQueue.Enqueue(neighbor);
+                    }
                 }
             }
         }
