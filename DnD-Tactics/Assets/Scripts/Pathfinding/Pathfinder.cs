@@ -33,7 +33,7 @@ public class Pathfinder : MonoBehaviour
         while(bfsQueue.Count != 0)
         {
             Tile temp = bfsQueue.Dequeue();
-            print(temp.calcCost());
+            print("Cost:" +temp.tileType + "Tile Type:" + temp.TileLocation);
             if (temp.calcCost() > character.characterClass.speed)
             {
                 continue;

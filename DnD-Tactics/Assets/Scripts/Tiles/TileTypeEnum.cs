@@ -6,5 +6,5 @@ public enum TileType
 {
     easy = 1,
     hard = 3,
-    impossible = int.MaxValue
+    impossible = 10
 }

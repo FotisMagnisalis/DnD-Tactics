@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: -7976153750071285545, guid: 172e9978070abb543afa95ffb36330da,
         type: 3}
       propertyPath: tileType
-      value: 2147483647
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: -7976153750071285545, guid: 172e9978070abb543afa95ffb36330da,
         type: 3}
