@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: -7976153750071285545, guid: 172e9978070abb543afa95ffb36330da,
         type: 3}
       propertyPath: tileType
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7976153750071285545, guid: 172e9978070abb543afa95ffb36330da,
         type: 3}
@@ -22,6 +22,11 @@ PrefabInstance:
       propertyPath: baseMaterial
       value: 
       objectReference: {fileID: 2100000, guid: dc599a325dd6b454cb6966bc8dd6ad4d, type: 2}
+    - target: {fileID: -7976153750071285545, guid: 172e9978070abb543afa95ffb36330da,
+        type: 3}
+      propertyPath: cost
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2537063811310132154, guid: 172e9978070abb543afa95ffb36330da,
         type: 3}
       propertyPath: m_LocalPosition.x

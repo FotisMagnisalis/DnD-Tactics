@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum TileType
+public class Character : MonoBehaviour
 {
-    easy = 1,
-    hard = 3,
-    impossible = int.MaxValue
+    public CharacterStats characterClass;
 }

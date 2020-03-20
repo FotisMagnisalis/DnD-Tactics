@@ -5,11 +5,29 @@ using UnityEngine;
 
 public class PlayerMover : Mover
 {
-    public Dictionary<Vector2Int,Tile> grid;
 
-    private void Start()
+    private void Update()
     {
-        grid = findAllTiles();
+        Vector3 halfExtens = new Vector3(0, 1, 0);
+        Collider[] colliders = Physics.OverlapBox(transform.position, halfExtens);
+
+        foreach(Collider col in colliders)
+        {
+            if(col.GetComponent<Tile>() != null)
+            {
+                currentTile = col.GetComponent<Tile>();
+                currentTile.currentUser = this;
+            }
+            
+        }
+    }
+
+    private void OnMouseDown()
+    {
+        if(currentTile != null)
+        {
+            this.transform.GetComponent<Pathfinder>().findWalkableTiles(currentTile);
+        }
     }
 
 }

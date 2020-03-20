@@ -11,8 +11,12 @@ public class Tile : MonoBehaviour
     //Pathfinding info
     public Vector2Int TileLocation;
     public TileType tileType;
+    public int cost;
     public bool hovered = false;
-    List<Tile> neighbors;
+    public List<Tile> neighbors;
+    public Tile parent;
+    public Mover currentUser;
+    public bool searched;
 
     //UI information
     [SerializeField] Material baseMaterial;
@@ -37,6 +41,11 @@ public class Tile : MonoBehaviour
         }
     }
 
+    public void Highlight()
+    {
+        transform.GetChild(0).GetComponent<MeshRenderer>().material = mouseOverMaterial;
+    }
+
     public void InitLocation()
     {
         TileLocation.x = (int)transform.position.x;
@@ -48,7 +57,7 @@ public class Tile : MonoBehaviour
 
     public void FindNeighbours(Dictionary<Vector2Int, Tile> grid)
     {
-        if(this.neighbors == null)
+        if(this.neighbors.Count == 0)
         {
             neighbors = new List<Tile>();
 
@@ -68,5 +77,29 @@ public class Tile : MonoBehaviour
         {
             neighbors.Add(grid[neighbourTile]);
         }
+    }
+
+    public bool checkIfOccupied()
+    {
+        return currentUser != null;
+    }
+
+    public int calcCost()
+    {
+        if(this.parent != null)
+        {
+            return (int) tileType + parent.calcCost();
+        }
+        else
+        {
+            return (int) tileType;
+        }
+    }
+
+    //Resets tile's pathfinder attributes
+    public void resetTile()
+    {
+        parent = null;
+        searched = false;
     }
 }
