@@ -37,7 +37,14 @@ public class Pathfinder : MonoBehaviour
         while(bfsQueue.Count != 0)
         {
             Tile temp = bfsQueue.Dequeue();
-            print("Cost:" +temp.tileType + "Tile Type:" + temp.TileLocation);
+
+            //DEBUG
+            if(temp.calcCost() < 0)
+            {
+                Debug.Log(temp);
+            }
+
+
             if (temp.calcCost() > characterSpeed)
             {
                 continue;
@@ -47,7 +54,7 @@ public class Pathfinder : MonoBehaviour
 
             foreach (Tile neighbor in temp.neighbors)
             {
-                if (!neighbor.searched)
+                if (!neighbor.searched && neighbor.currentUser == null)
                 {
                     neighbor.parent = temp;
 

@@ -12,7 +12,6 @@ public class Tile : MonoBehaviour
     public Vector2Int TileLocation;
     public TileType tileType;
     public int cost;
-    public bool hovered = false;
     public List<Tile> neighbors;
     public Tile parent;
     public Mover currentUser;
@@ -21,6 +20,25 @@ public class Tile : MonoBehaviour
     //UI information
     [SerializeField] Material baseMaterial;
     [SerializeField] Material mouseOverMaterial;
+    public bool highlighted = false;
+    public bool hovered = false;
+
+    private void Update()
+    {
+        if (hovered)
+        {
+            transform.GetChild(0).GetComponent<MeshRenderer>().material = mouseOverMaterial;
+            return;
+        }
+
+        if (highlighted)
+        {
+            transform.GetChild(0).GetComponent<MeshRenderer>().material = mouseOverMaterial;
+            return;
+        }
+
+        transform.GetChild(0).GetComponent<MeshRenderer>().material = baseMaterial;
+    }
 
 
     private void OnMouseOver()
@@ -28,7 +46,6 @@ public class Tile : MonoBehaviour
         if (!hovered && tileType != TileType.impossible)
         {
             hovered = true;
-            transform.GetChild(0).GetComponent<MeshRenderer>().material = mouseOverMaterial;
         }
     }
 
@@ -37,13 +54,12 @@ public class Tile : MonoBehaviour
         if (hovered)
         {
             hovered = false;
-            transform.GetChild(0).GetComponent<MeshRenderer>().material = baseMaterial;
         }
     }
 
     public void Highlight()
     {
-        transform.GetChild(0).GetComponent<MeshRenderer>().material = mouseOverMaterial;
+        highlighted = true;
     }
 
     public void InitLocation()
@@ -88,6 +104,10 @@ public class Tile : MonoBehaviour
     {
         if(this.parent != null)
         {
+            if((int) tileType < 0)
+            {
+                print(this);
+            }
             return (int) tileType + parent.calcCost();
         }
         else
@@ -101,5 +121,6 @@ public class Tile : MonoBehaviour
     {
         parent = null;
         searched = false;
+        highlighted = false;
     }
 }

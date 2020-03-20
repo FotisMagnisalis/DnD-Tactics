@@ -5,7 +5,6 @@ using UnityEngine;
 public abstract class Mover : MonoBehaviour
 {
     public Tile currentTile;
-    public Tile startingTile;
 
     public void MoveTo(Tile targetTile)
     {
