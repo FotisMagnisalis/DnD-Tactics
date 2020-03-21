@@ -7,8 +7,8 @@ public class Pathfinder : MonoBehaviour
 {
 
     public Dictionary<Vector2Int, Tile> grid;
-    List<Tile> walkableTiles = new List<Tile>();
-    Character character;
+    public List<Tile> walkableTiles = new List<Tile>();
+    public Character character;
     int characterSpeed;
 
     void Start()
@@ -67,12 +67,15 @@ public class Pathfinder : MonoBehaviour
                 }
             }
         }
-
-        HighlightTiles();
     }
 
-    private void resetTiles()
+    public void resetTiles()
     {
+        if(walkableTiles != null)
+        {
+            walkableTiles.Clear();
+        }
+
         foreach(var tile in grid)
         {
             tile.Value.resetTile();

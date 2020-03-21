@@ -122,5 +122,6 @@ public class Tile : MonoBehaviour
         parent = null;
         searched = false;
         highlighted = false;
+        currentUser = null;
     }
 }

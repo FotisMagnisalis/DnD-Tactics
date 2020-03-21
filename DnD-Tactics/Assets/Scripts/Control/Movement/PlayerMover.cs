@@ -8,17 +8,38 @@ public class PlayerMover : Mover
 
     private void Update()
     {
-        Vector3 halfExtens = new Vector3(0, 1, 0);
-        Collider[] colliders = Physics.OverlapBox(transform.position, halfExtens);
+        FindCurrentBlock();
 
-        foreach(Collider col in colliders)
+        if (moving)
         {
-            if(col.GetComponent<Tile>() != null)
+            Move();
+            return;
+        }
+
+
+        //If is not moving yet, start moving
+        if (isActive)
+        {
+            processAction();
+        }
+    }
+
+    private void processAction()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            RaycastHit[] hits = Physics.RaycastAll(Camera.main.ScreenPointToRay(Input.mousePosition));
+            foreach(RaycastHit hit in hits)
             {
-                currentTile = col.GetComponent<Tile>();
-                currentTile.currentUser = this;
+                Tile targetTile = hit.transform.GetComponent<Tile>();
+
+                if (targetTile == null) continue;
+
+                if (pathfinder.walkableTiles.Contains(targetTile))
+                {
+                    StartMovement(targetTile);
+                }
             }
-            
         }
     }
 
@@ -26,8 +47,19 @@ public class PlayerMover : Mover
     {
         if(currentTile != null)
         {
-            this.transform.GetComponent<Pathfinder>().findWalkableTiles(currentTile);
+            pathfinder.findWalkableTiles(currentTile);
+
+            pathfinder.HighlightTiles();
+
+            StartCoroutine(setActive());
         }
+    }
+
+    IEnumerator setActive()
+    {
+        yield return new WaitForSeconds(1);
+
+        isActive = true;
     }
 
 }

@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4246621142896584055}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5, z: 0}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2537063811310132154}
@@ -145,9 +145,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TileLocation: {x: 0, y: 0}
   tileType: 0
-  hovered: 0
+  cost: 0
+  neighbors: []
+  parent: {fileID: 0}
+  currentUser: {fileID: 0}
+  searched: 0
   baseMaterial: {fileID: 2100000, guid: dc599a325dd6b454cb6966bc8dd6ad4d, type: 2}
   mouseOverMaterial: {fileID: 2100000, guid: 6fc7525cd0a8f0647ac27020dec97fe1, type: 2}
+  highlighted: 0
+  hovered: 0
 --- !u!65 &8258088548190974175
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -176,7 +182,7 @@ PrefabInstance:
     - target: {fileID: 9148690069807648194, guid: 8ab2160f6bffdb64782baf24cdcbfc30,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.5
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 9148690069807648194, guid: 8ab2160f6bffdb64782baf24cdcbfc30,
         type: 3}
